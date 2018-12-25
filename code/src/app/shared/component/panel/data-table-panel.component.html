@@ -1,0 +1,18 @@
+<nz-table #dataTable [nzData]="displayData" [nzLoading]="loading">
+    <thead>
+        <tr>
+            <th *ngFor="let columnItem of dataTablePanelModel.columnItems">{{columnItem.title}}</th>
+            <th *ngIf="dataTablePanelModel.actions.length!==0" nzRight="0px">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of dataTable.data">
+            <td *ngFor="let columnItem of dataTablePanelModel.columnItems">{{data[columnItem.dataIndex]}}</td>
+            <td nzRight="0px">
+                <a *ngFor="let action of dataTablePanelModel.actions" (click)="onClick(data.id,action.url)">
+                    <i class={{action.icon}}></i>{{action.text}}
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>
