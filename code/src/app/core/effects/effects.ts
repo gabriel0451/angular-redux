@@ -1,6 +1,7 @@
-import { CommonEffects } from './common.effects';
-
+import { PersonnelEffects } from './security/personnel.effects';
+import { RoleEffects } from './security/role.effects';
 export const effects =
   [
-    CommonEffects
+    PersonnelEffects,
+    RoleEffects
   ];

@@ -1,4 +1,4 @@
-<nz-table #dataTable [nzData]="displayData" [nzLoading]="loading">
+<nz-table #dataTable [nzData]="displayData">
     <thead>
         <tr>
             <th *ngFor="let columnItem of dataTablePanelModel.columnItems">{{columnItem.title}}</th>
@@ -10,7 +10,7 @@
             <td *ngFor="let columnItem of dataTablePanelModel.columnItems">{{data[columnItem.dataIndex]}}</td>
             <td nzRight="0px">
                 <a *ngFor="let action of dataTablePanelModel.actions" (click)="onClick(data.id,action.url)">
-                    <i class={{action.icon}}></i>{{action.text}}
+                  {{action.text}}
                 </a>
             </td>
         </tr>

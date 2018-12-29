@@ -20,5 +20,6 @@ export class DataTablePanelComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.displayData);
   }
 }

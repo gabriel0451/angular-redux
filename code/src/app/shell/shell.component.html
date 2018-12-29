@@ -1,68 +1,50 @@
 <nz-layout>
-  <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="triggerTemplate">
+  <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="triggerTemplate" [nzBreakpoint]="'lg'">
     <div class="logo">
       <a [routerLink]="['/']">
-        <img class="expanded" src="./assets/image/logo.png" />
+        <img class="expanded" src="../../assets/image/logo.png" />
       </a>
     </div>
     <ul nz-menu [nzTheme]="'dark'" [nzMode]="'inline'" [nzInlineCollapsed]="isCollapsed">
-      <ng-template ngFor let-item="$implicit" [ngForOf]="menus" let-menuIndex="index">
-        <li nz-menu-item *ngIf="item.children.length==0" routerLinkActive="ant-menu-item-selected">
-          <a class="ng-star-inserted" [routerLink]="[item.href]">
-            <i nz-icon type="{{item.icon}}" *ngIf="item.icon!=''"></i>
-            <span class="nav-text">{{item.name}}</span>
+      <ng-container *ngFor="let menu of menus">
+        <li nz-menu-item *ngIf="menu.children.length===0">
+          <a [routerLink]="[menu.href]" routerLinkActive="router-link-active">
+            <span title><i nz-icon [type]="menu.icon"></i><span class="nav-text">{{menu.name}}</span></span>
           </a>
         </li>
-        <li nz-submenu *ngIf="item.children.length!=0">
-          <span title>
-            <i nz-icon type="{{item.icon}}" *ngIf="item.icon!=''"></i>
-            <span class="nav-text">{{item.name}}</span>
-          </span>
-          <ul>
-            <ng-template ngFor let-child="$implicit" [ngForOf]="item.children" let-i="index">
-              <li nz-menu-item *ngIf="child.children.length==0" routerLinkActive="ant-menu-item-selected">
-                <a class="ng-star-inserted" [routerLink]="[child.href]">
-                  <span>
-                    <i nz-icon type="{{child.icon}}" *ngIf="child.icon!=''"></i>
-                    <span class="nav-text">{{child.name}}</span>
-                  </span>
-                </a>
-              </li>
-
-              <li nz-submenu *ngIf="child.children.length!=0">
-                <span title>
-                  <i nz-icon type="{{child.icon}}" *ngIf="child.icon!=''"></i>
-                  <span class="nav-text">{{child.name}}</span>
-                </span>
-                <ul>
-                  <li nz-menu-item *ngFor="let childchild of child.children;" routerLinkActive="ant-menu-item-selected">
-                    <a class="ng-star-inserted" [routerLink]="[childchild.href]">
-                      <span>
-                        <i nz-icon type="{{childchild.icon}}" *ngIf="childchild.icon!=''"></i>
-                        <span class="nav-text">{{childchild.name}}</span>
-                      </span>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-            </ng-template>
+        <li nz-submenu *ngIf="menu.children.length>0">
+          <span title><i nz-icon [type]="menu.icon"></i><span class="nav-text">{{menu.name}}</span></span>
+          <ul *ngFor="let childrenMenu of menu.children">
+            <li nz-menu-item *ngIf="childrenMenu.children.length===0">
+              <a [routerLink]="[childrenMenu.href]" routerLinkActive="router-link-active">
+                <span title><i nz-icon [type]="childrenMenu.icon"></i><span class="nav-text">{{childrenMenu.name}}</span></span>
+              </a>
+            </li>
+            <li nz-submenu *ngIf="childrenMenu.children.length>0">
+              <span title><i nz-icon [type]="childrenMenu.icon"></i><span class="nav-text">{{childrenMenu.name}}</span></span>
+              <ul *ngFor="let item of childrenMenu.children">
+                <li nz-menu-item>
+                  <a [routerLink]="[item.href]" routerLinkActive="router-link-active">
+                    <span title><i nz-icon [type]="item.icon"></i><span class="nav-text">{{item.name}}</span></span>
+                  </a>
+                </li>
+              </ul>
+            </li>
           </ul>
         </li>
-      </ng-template>
+      </ng-container>
     </ul>
   </nz-sider>
   <nz-layout>
     <nz-header>
-      <i nz-icon class="trigger" [type]="isCollapsed?'menu-unfold':'menu-fold'" (click)="isCollapsed=!isCollapsed"></i>
+      <i class="trigger" nz-icon [type]="isCollapsed?'menu-unfold':'menu-fold'" (click)="isCollapsed=!isCollapsed"></i>
     </nz-header>
     <nz-content>
       <router-outlet></router-outlet>
     </nz-content>
-    <nz-footer>哈尔滨百氏佳居网络科技有限公司 | 网络经营许可证 黑ICP备11024601号-12 | ©Copyright©2016-2016好酷网housecool.com版权所有 黑公网安备
+    <nz-footer>哈尔滨百氏佳居网络科技有限公司 | 网络经营许可证 黑ICP备11024601号-12 |
+      ©Copyright©2018-2018房酷网housecool.com版权所有 黑公网安备
       44030502000415号
     </nz-footer>
   </nz-layout>
 </nz-layout>
-<ng-template #trigger>
-  <i class="anticon anticon-up"></i>
-</ng-template>

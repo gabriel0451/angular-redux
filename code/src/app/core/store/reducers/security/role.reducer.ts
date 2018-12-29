@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import * as fromActions from '../../actions/security/common.action';
+import * as fromActions from '../../actions/security/role.action';
 import { KeyValueItem } from '../../../models/common.model';
 import { State } from '../../app.states';
 import { Utils } from '../../../../utils';
@@ -78,26 +78,26 @@ export const initialState: State = {
   }
 };
 
-export const reducer = (state = initialState, action: fromActions.All): State => {
+export function roleReducer(state = initialState, action: fromActions.All): State {
   switch (action.type) {
-    case fromActions.CommonActionTypes.QUERY_BEGIN: {
+    case fromActions.ActionTypes.QUERY_BEGIN: {
       state.common.isLoading = true;
       return state;
     }
-    case fromActions.CommonActionTypes.QUERY_SUCCESS: {
+    case fromActions.ActionTypes.QUERY_SUCCESS: {
       state.common.isLoading = false;
       state.domainData = action.data;
       return state;
     }
-    case fromActions.CommonActionTypes.QUERY_FAIL: {
+    case fromActions.ActionTypes.QUERY_FAIL: {
       state.common.isLoading = false;
       return state;
     }
-    case fromActions.CommonActionTypes.PAGE_INIT_SUCCESS: {
+    case fromActions.ActionTypes.PAGE_INIT_SUCCESS: {
       state.uiState.queryPanel.queryItems.find(p => p.columnName === 'isAdmin').keyValueItems = action.data;
       return state;
     }
-    case fromActions.CommonActionTypes.PAGE_INIT_FAIL: {
+    case fromActions.ActionTypes.PAGE_INIT_FAIL: {
       return state;
     }
     default: {

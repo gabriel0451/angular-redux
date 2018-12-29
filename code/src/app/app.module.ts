@@ -16,6 +16,7 @@ import { reducers, metaReducers } from './core/store/reducers/reducers';
 import { effects } from './core/effects/effects';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { TestDataService } from './test-data.service';
+
 registerLocaleData(zh);
 
 @NgModule({

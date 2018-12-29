@@ -5,8 +5,8 @@ import * as roleReducer from '../reducers/security/role.reducer';
 import { environment } from '../../../../environments/environment';
 
 export const reducers: ActionReducerMap<AppState> = {
-  personnelState: personnelReducer.reducer,
-  roleState: roleReducer.reducer
+  personnelState: personnelReducer.personenlReducer,
+  roleState: roleReducer.roleReducer
 };
 
 export function logger(reducer: ActionReducer<AppState>): ActionReducer<AppState> {

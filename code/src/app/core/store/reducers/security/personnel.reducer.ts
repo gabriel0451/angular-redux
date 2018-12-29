@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import * as formActions from '../../actions/security/common.action';
+import * as formActions from '../../actions/security/personnel.action';
 import { KeyValueItem } from '../../../models/common.model';
 import { State } from '../../app.states';
 import { Utils } from '../../../../utils';
@@ -78,26 +78,26 @@ export const initialState: State = {
   }
 };
 
-export const reducer = (state = initialState, action: formActions.All): State => {
+export function personenlReducer(state = initialState, action: formActions.All): State {
   switch (action.type) {
-    case formActions.CommonActionTypes.QUERY_BEGIN: {
+    case formActions.ActionTypes.QUERY_BEGIN: {
       state.common.isLoading = true;
       return state;
     }
-    case formActions.CommonActionTypes.QUERY_SUCCESS: {
+    case formActions.ActionTypes.QUERY_SUCCESS: {
       state.common.isLoading = false;
       state.domainData = action.data;
       return state;
     }
-    case formActions.CommonActionTypes.QUERY_FAIL: {
+    case formActions.ActionTypes.QUERY_FAIL: {
       state.common.isLoading = false;
       return state;
     }
-    case formActions.CommonActionTypes.PAGE_INIT_SUCCESS: {
+    case formActions.ActionTypes.PAGE_INIT_SUCCESS: {
       state.uiState.queryPanel.queryItems.find(p => p.columnName === 'type').keyValueItems = action.data;
       return state;
     }
-    case formActions.CommonActionTypes.PAGE_INIT_FAIL: {
+    case formActions.ActionTypes.PAGE_INIT_FAIL: {
       return state;
     }
     default: {

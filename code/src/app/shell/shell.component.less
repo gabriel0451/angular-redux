@@ -4,7 +4,6 @@
     font-size: 18px;
     padding: 0 24px;
     cursor: pointer;
-    color: #fff;
 }
 
 :host ::ng-deep .trigger:hover {
@@ -25,31 +24,17 @@
     }
 }
 
-
 :host ::ng-deep .ant-layout {
     min-height: 100%;
     .ant-layout-header {
         line-height: 40px;
         height: 40px;
         padding: 0;
-        .ant-menu.ant-menu-root{
-            line-height: 64px;
-            width: 100%;
-        }
-
-        .header-info{
+        background-color: #fff;
+        .header-info {
             float: right;
             padding-right: 16px;
-            .ant-dropdown-trigger{
-                align-items: center;
-                display: flex;
-                span{
-                    font-size: 16px;
-                    padding: 0 8px;
-                }
-            }
         }
-
     }
     .ant-layout-content {
         padding: 10px;
@@ -62,5 +47,4 @@
         height: 32px;
         padding: 4px;
     }
-
 }

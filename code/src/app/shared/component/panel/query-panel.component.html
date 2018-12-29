@@ -1,37 +1,33 @@
 <form nz-form [formGroup]="queryPanelForm">
-  <div nz-row nzGutter="8" nzType="flex" nzJustify="space-between" nzAlign="top">
-    <div nz-col style="width:85%">
-      <div nz-col [nzSpan]="6" *ngFor="let item of queryPanel.queryItems" [style.display]="item.show?'block':'none'">
-        <nz-form-item [ngSwitch]="item.type">
-          <nz-form-label [nzSpan]="6" [nzFor]="item.columnName">{{item.title}}</nz-form-label>
-          <nz-form-control [nzSpan]="18">
-            <input nz-input placeholder="请输入" [formControlName]="item.columnName" [attr.id]="item.columnName"
-              *ngSwitchCase="'text'">
-            <nz-select style="width: 100%;" nzAllowClear nzPlaceHolder="请选择" [formControlName]="item.columnName" [id]="item.columnName"
-              *ngSwitchCase="'select'">
-              <nz-option [nzValue]="keyValueItem.key" [nzLabel]="keyValueItem.value" *ngFor="let keyValueItem of item.keyValueItems;"></nz-option>
-            </nz-select>
-            <nz-range-picker style="width: 100%;" [nzFormat]="'yyyy-MM-dd'" [formControlName]="item.columnName" [id]="item.columnName"
-              *ngSwitchCase="'time'"></nz-range-picker>
-          </nz-form-control>
-        </nz-form-item>
-      </div>
-    </div>
-    <div nz-col style="width:13%">
-      <div nz-row nzGutter="4">
-        <div nz-col nzSpan="8">
-          <button nz-button nzType="primary" [nzLoading]="isLoading" (click)="onSearch()" nzBlock>查询</button>
-        </div>
-        <div nz-col nzSpan="8">
-          <button nz-button nzType="default" (click)="resetForm()" nzBlock>重置</button>
-        </div>
-        <div nz-col nzSpan="8">
-          <button nz-button nzType="primary" nzShape="circle" (click)="toggleCollapse()">
-            <i nz-icon type="left" *ngIf="isCollapse"></i>
-            <i nz-icon type="down" *ngIf="!isCollapse"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
+  <nz-form-item nzGutter="8" nzType="flex" nzJustify="start" nzAlign="top">
+    <ng-container *ngFor="let item of queryPanel.queryItems" [ngSwitch]="item.type">
+      <ng-container *ngIf="item.show">
+        <nz-form-label nzSpan="2" [nzFor]="item.columnName">{{item.title}}</nz-form-label>
+        <nz-form-control nzSpan="4">
+          <input nz-input placeholder="请输入" [formControlName]="item.columnName" [attr.id]="item.columnName"
+            *ngSwitchCase="'text'">
+          <nz-select nzAllowClear nzPlaceHolder="请选择" [formControlName]="item.columnName" [id]="item.columnName"
+            *ngSwitchCase="'select'">
+            <nz-option [nzValue]="keyValueItem.key" [nzLabel]="keyValueItem.value" *ngFor="let keyValueItem of item.keyValueItems;"></nz-option>
+          </nz-select>
+          <nz-range-picker [nzFormat]="'yyyy-MM-dd'" [formControlName]="item.columnName" [id]="item.columnName"
+            *ngSwitchCase="'time'"></nz-range-picker>
+        </nz-form-control>
+      </ng-container>
+    </ng-container>
+  </nz-form-item>
+  <nz-form-item nzType="flex" nzJustify="end" nzGutter="8" nzAlign="middle">
+    <nz-form-control>
+      <button nz-button nzType="primary" [nzLoading]="isLoading" (click)="onSearch()">查询</button>
+    </nz-form-control>
+    <nz-form-control>
+      <button nz-button nzType="default" (click)="resetForm()">重置</button>
+    </nz-form-control>
+    <nz-form-control>
+      <button nz-button nzType="primary" nzShape="circle" (click)="toggleCollapse()">
+        <i nz-icon type="left" *ngIf="isCollapse"></i>
+        <i nz-icon type="down" *ngIf="!isCollapse"></i>
+      </button>
+    </nz-form-control>
+  </nz-form-item>
 </form>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { State } from '../../core/store/app.states';
 import { Store } from '@ngrx/store';
 import * as roleReducer from '../../core/store/reducers/security/role.reducer';
-import * as fromActions from '../../core/store/actions/security/common.action';
+import * as fromActions from '../../core/store/actions/security/role.action';
 
 @Component({
   selector: 'app-role-personnel',
@@ -24,6 +24,5 @@ export class RoleComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(new fromActions.PageInitBegin('role'));
-    this.store.dispatch(new fromActions.QueryBegin('roles', {}));
   }
 }
