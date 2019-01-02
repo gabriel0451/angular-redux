@@ -4,7 +4,7 @@ import { ShellComponent } from './shell/shell.component';
 
 const routes: Routes = [
   {
-    path: '', component: ShellComponent,
+    path: '', component: ShellComponent, data: { breadcrumb: '主页' },
     children: [
       { path: 'manage', loadChildren: './views/manage.module#ManageModule' },
     ]

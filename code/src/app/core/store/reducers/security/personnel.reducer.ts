@@ -64,13 +64,13 @@ export const initialState: State = {
       }],
       actions: [{
         text: '详情',
-        url: '/manage/security/personnel-detail',
-        icon: 'anticon anticon-eye',
+        url: '/manage/security/personnel/detail',
+        icon: '',
         disabled: true
       }, {
         text: '修改',
         url: '',
-        icon: 'anticon anticon-edit',
+        icon: '',
         disabled: true
       }],
       pageSize: 10

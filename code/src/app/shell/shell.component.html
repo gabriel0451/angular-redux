@@ -40,6 +40,8 @@
       <i class="trigger" nz-icon [type]="isCollapsed?'menu-unfold':'menu-fold'" (click)="isCollapsed=!isCollapsed"></i>
     </nz-header>
     <nz-content>
+      <nz-breadcrumb [nzAutoGenerate]="true">
+      </nz-breadcrumb>
       <router-outlet></router-outlet>
     </nz-content>
     <nz-footer>哈尔滨百氏佳居网络科技有限公司 | 网络经营许可证 黑ICP备11024601号-12 |

@@ -15,11 +15,11 @@ export class DataTablePanelComponent implements OnInit {
 
   onClick(id: string, url: string) {
     if (url) {
+      console.log(url);
       this.router.navigate([url, id]);
     }
   }
 
   ngOnInit() {
-    console.log(this.displayData);
   }
 }

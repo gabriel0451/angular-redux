@@ -12,9 +12,10 @@ import { ShellModule } from './shell/shell.module';
 import { CoreModule } from './core/core.module';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { reducers, metaReducers } from './core/store/reducers/reducers';
+import { reducers, metaReducers, CustomSerializer } from './core/store/reducers/reducers';
 import { effects } from './core/effects/effects';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { TestDataService } from './test-data.service';
 
 registerLocaleData(zh);
@@ -33,7 +34,8 @@ registerLocaleData(zh);
     CoreModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot(effects),
-    InMemoryWebApiModule.forRoot(TestDataService)
+    InMemoryWebApiModule.forRoot(TestDataService),
+    StoreRouterConnectingModule.forRoot({ serializer: CustomSerializer }),
   ],
   providers: [{ provide: NZ_I18N, useValue: zh_CN }],
   bootstrap: [AppComponent]
